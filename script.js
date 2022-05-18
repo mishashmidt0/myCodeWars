@@ -223,10 +223,194 @@ function validateBattlefield(field) {
     if (treeShip.length !== 2) return false
     if (twoShip.length !== 3) return false
     if (oneShip.length !== 4) return false
+    let isDone = true
 
-    console.log(field)
-    console.log(allShipDestructuring)
-    return true
+    function aroundShip(ship) {
+
+        ship.forEach((obj) => {
+            switch (obj.line) {
+                case "vertical" :
+                    console.log(field)
+                    console.log(obj.base)
+
+                    switch (obj.base) {
+                        case 0:
+                            obj.coordinates.forEach((keyObj) => {
+
+                                let keyObjStart = obj.coordinates[0] - 1
+                                let keyObjEnd = obj.coordinates[obj.coordinates.length - 1] + 1
+
+                                let number = obj.base + 1
+
+                                field.forEach((arr, index) => {
+                                    if (keyObj === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === number && el === 1) isDone = false
+                                    })
+
+                                    if (keyObjStart === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === obj.base && el === 1) isDone = false
+                                        if (indexEl === number && el === 1) isDone = false
+                                    })
+
+                                    if (keyObjEnd === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === obj.base && el === 1) isDone = false
+                                        if (indexEl === number && el === 1) isDone = false
+                                    })
+                                })
+                            })
+
+                            break;
+                        case 9:
+                            obj.coordinates.forEach((keyObj) => {
+
+                                let keyObjStart = obj.coordinates[0] - 1
+                                let keyObjEnd = obj.coordinates[obj.coordinates.length - 1] + 1
+
+                                let number = obj.base - 1
+
+                                field.forEach((arr, index) => {
+                                    if (keyObj === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === number && el === 1) isDone = false
+                                    })
+
+                                    if (keyObjStart === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === obj.base && el === 1) isDone = false
+                                        if (indexEl === number && el === 1) isDone = false
+                                    })
+
+                                    if (keyObjEnd === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === obj.base && el === 1) isDone = false
+                                        if (indexEl === number && el === 1) isDone = false
+                                    })
+                                })
+                            })
+                            break;
+                        default:
+                            obj.coordinates.forEach((keyObj) => {
+
+                                let keyObjStart = obj.coordinates[0] - 1
+                                let keyObjEnd = obj.coordinates[obj.coordinates.length - 1] + 1
+
+                                let left = obj.base - 1
+                                let right = obj.base + 1
+
+                                field.forEach((arr, index) => {
+                                    if (keyObj === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === left && el === 1) isDone = false
+                                        if (indexEl === right && el === 1) isDone = false
+                                    })
+
+                                    if (keyObjStart === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === obj.base && el === 1) isDone = false
+                                        if (indexEl === left && el === 1) isDone = false
+                                        if (indexEl === right && el === 1) isDone = false
+                                    })
+
+                                    if (keyObjEnd === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === obj.base && el === 1) isDone = false
+                                        if (indexEl === right && el === 1) isDone = false
+                                        if (indexEl === left && el === 1) isDone = false
+                                    })
+                                })
+                            })
+                            break
+                    }
+
+                    break
+                case "horizontally" :
+                    switch (obj.base) {
+                        case 0:
+                            obj.coordinates.forEach((keyObj) => {
+
+                                let keyObjStart = obj.coordinates[0] - 1
+                                let keyObjEnd = obj.coordinates[obj.coordinates.length - 1] + 1
+
+                                let number = obj.base + 1
+
+                                field.forEach((arr, index) => {
+                                    if (keyObj === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === number && el === 1) isDone = false
+                                    })
+
+                                    if (keyObjStart === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === obj.base && el === 1) isDone = false
+                                        if (indexEl === number && el === 1) isDone = false
+                                    })
+
+                                    if (keyObjEnd === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === obj.base && el === 1) isDone = false
+                                        if (indexEl === number && el === 1) isDone = false
+                                    })
+                                })
+                            })
+
+                            break;
+                        case 9:
+                            obj.coordinates.forEach((keyObj) => {
+
+                                let keyObjStart = obj.coordinates[0] - 1
+                                let keyObjEnd = obj.coordinates[obj.coordinates.length - 1] + 1
+
+                                let number = obj.base - 1
+
+                                field.forEach((arr, index) => {
+                                    if (keyObj === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === number && el === 1) isDone = false
+                                    })
+
+                                    if (keyObjStart === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === obj.base && el === 1) isDone = false
+                                        if (indexEl === number && el === 1) isDone = false
+                                    })
+
+                                    if (keyObjEnd === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === obj.base && el === 1) isDone = false
+                                        if (indexEl === number && el === 1) isDone = false
+                                    })
+                                })
+                            })
+                            break;
+                        default:
+                            obj.coordinates.forEach((keyObj) => {
+
+                                let keyObjStart = obj.coordinates[0] - 1
+                                let keyObjEnd = obj.coordinates[obj.coordinates.length - 1] + 1
+
+                                let left = obj.base - 1
+                                let right = obj.base + 1
+
+                                field.forEach((arr, index) => {
+                                    if (keyObj === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === left && el === 1) isDone = false
+                                        if (indexEl === right && el === 1) isDone = false
+                                    })
+
+                                    if (keyObjStart === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === obj.base && el === 1) isDone = false
+                                        if (indexEl === left && el === 1) isDone = false
+                                        if (indexEl === right && el === 1) isDone = false
+                                    })
+
+                                    if (keyObjEnd === index) arr.forEach((el, indexEl) => {
+                                        if (indexEl === obj.base && el === 1) isDone = false
+                                        if (indexEl === right && el === 1) isDone = false
+                                        if (indexEl === left && el === 1) isDone = false
+                                    })
+                                })
+                            })
+                            break
+                    }
+                    break
+                default:
+                    break;
+            }
+        })
+    }
+
+    aroundShip(fourShip)
+    console.log(twoShip)
+
+    return isDone
 }
 
 console.log(validateBattlefield([[1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
