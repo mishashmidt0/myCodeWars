@@ -1,13 +1,5 @@
-let x = 3;
-
-function fn() {
-    x = 10;
-    return;
-
-    function x() {
-
-    }
+function squareDigits(num) {
+    return Number(num.toString().split("").map(el => el ** 2).join(""))
 }
 
-fn()
-console.log(x)
+console.log(squareDigits(9119))
