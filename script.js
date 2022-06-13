@@ -1,5 +1,7 @@
-function squareDigits(num) {
-    return Number(num.toString().split("").map(el => el ** 2).join(""))
+var isSquare = function (n) {
+    return false; // fix me
 }
 
-console.log(squareDigits(9119))
+console.log(isSquare(25))
+console.log(isSquare(26))
+console.log(isSquare(81))
