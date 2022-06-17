@@ -63,4 +63,80 @@ const user3_2 = {
 
 const user4 = {name: "Viktor"}
 user4.f = user3_2.f
-user4.f()()
+user4.f()() // 2й вызов функции вызываеться сам по себе, после того как выполнился
+// метод user4.f() который вернул функцию и эту функцию мы вызываем в шлоюальном обьекте this вернет undefined or window
+
+// Лайвфак для сохранения this  мы можем заключить его в переменную !!!
+
+const user3_3 = {
+    name: "Anna",
+    f() {
+        let self = this;  // сохроняем this
+
+        if (!!this) {
+            if (!!this.name) console.warn(this.name)
+        }
+
+        function InnerF() {
+            console.log("functionInnerF")
+            console.log(self)
+        }
+
+        console.log(self)
+        return InnerF   // возвращаем функция
+    }
+
+}
+user4.f2 = user3_3.f
+user4.f2()()
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  ()=> @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// отлияие
+// у стрелочной функции нет своего this  и своего context
+// нет  псевдо массива arguments
+// нету обьекта prototype
+
+console.dir(function () {
+})
+console.dir(() => {
+})
+console.warn("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ()=> @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+const arrow = () => {
+    console.log(this)
+}
+arrow()
+
+const pers = {name: "Niiki"}
+pers.f = arrow
+pers.f()
+
+// this в стрелочной функции создаеться в моменте создание стрелочной функции, только один раз, в то время как декларатеон this создаеться всегда по мере вызова
+
+// obj  не создает область видимости
+
+const pers2 = {
+    name: "Kolya",
+    arrow: () => {
+        console.log("Kolya arrow funct")
+        console.log(this)
+    }
+}
+pers2.arrow()
+
+const pers3 = {name: "Pete"}
+
+const obj2 = {
+    name: "Ooi",
+    arrow: () => {
+        console.log(this)
+        return function () {
+            if (!!this) {
+                if (!!this.name) console.warn(this.name)
+            }
+            console.log(this)
+        }
+    }
+}
+
+pers3.f = obj2.arrow()
+pers3.f()
