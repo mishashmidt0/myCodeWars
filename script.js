@@ -129,6 +129,7 @@ const obj2 = {
     name: "Ooi",
     arrow: () => {
         console.log(this)
+
         return function () {
             if (!!this) {
                 if (!!this.name) console.warn(this.name)
@@ -140,3 +141,69 @@ const obj2 = {
 
 pers3.f = obj2.arrow()
 pers3.f()
+
+
+const pers4 = {name: "Pole"}
+const obj3 = {
+    name: "Ooi",
+    f() {
+        if (!!this) {
+            if (!!this.name) console.warn(this.name)
+        }
+        console.log(this)
+        return () => {
+            console.log(this)
+        }
+    }
+}
+
+pers4.a = obj3.f()
+pers4.a()
+
+const obj4 = {
+    name: "Uri",
+    f() {
+        setTimeout(() => {
+            console.warn("()=>")
+            console.log(this)
+        }, 500)
+        setTimeout(function () {
+            console.warn("funct()")
+            console.log(this)
+        }, 500)
+    }
+}
+obj4.f()
+
+// Bind
+const pers5 = {name: "Vladimir"}
+
+function f1() {
+    console.warn(this.name)
+}
+
+pers5.f = f1
+// pers5.f()
+
+f1.bind(pers5) // возвращает новую функцию с измененным контекстом (захардкоженным)
+const BindedFunct = f1.bind(pers5)
+BindedFunct()
+
+const pers6 = {name: "Rick"}
+
+function f2(a, b, c) {
+
+    console.log(arguments)  // сохраняет все перкданные ей аргументы сначала сбинженные потом в самом аргументе
+    console.log([...arguments].filter(e => e > 90))
+    console.log([].filter.call(arguments, e => e > 100))
+    console.log(this.name, a, b, c)
+}
+
+f2.bind(pers6, 100, 200, 300, 400)(111) // забинженные аргументы в функцию переда.ться раньше, чем момент вызова 111 не пройжет
+
+//Call
+f2.call(pers5, 50)
+// Apply
+f2.call(pers3, [30, 49, 22, 100, 200, 300])
+
+// И call и apply  делают одно и то же отличаются только приявзкой аргументов
