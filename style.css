@@ -1,0 +1,18 @@
+.select {
+    display: inline-block;
+    cursor: pointer;
+    border: solid 1px black;
+    margin: 20px;
+    padding: 20px;
+}
+
+.select_li {
+    font-size: 20px;
+    font-weight: 600;
+    width: 30px;
+    cursor: pointer;
+    border: solid 1px black;
+    list-style-type: none;
+    margin: 3px 20px;
+    padding: 3px 20px;
+}
